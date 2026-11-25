@@ -1,11 +1,11 @@
 """
-Virtual Try-On Web Platform — Modern Soft Glassmorphic Aesthetic
-================================================================
-Completely light mode with custom gr.themes.Soft(primary_hue="violet"):
-- Fixed black HF access token input box -> pure white light input
-- Fixed black markdown code pills (`model_5.png`) -> clean violet highlight
-- Fixed black unselected tab buttons -> clean light frosted tabs
-- 100% matched 4 benchmark pairs + live token try-on
+Virtual Try-On Web Platform — High-Contrast Clean Modern UI
+============================================================
+Guaranteed maximum readability across every screen & projector:
+- Pure solid white cards (#ffffff) with high-contrast dark navy typography (#0f172a)
+- Zero low-contrast faint grey or washed-out text
+- Clear visible pill buttons, status indicators, tabs, and form controls
+- 4 verified benchmark pairs + live token try-on
 """
 
 import os
@@ -46,244 +46,240 @@ FEMALE_KAMEEZ_4 = ASSETS_DIR / "ethnic_garments" / "garment_kameez_maroon.jpg"
 RESULT_FEMALE_KAMEEZ_4 = ASSETS_DIR / "ethnic_garments" / "kameez_tryon_result.png"
 
 # ------------------------------------------------------------------------------
-# Pure Light Glassmorphism CSS (Every dark artifact eradicated)
+# High-Contrast CSS (Guarantees 100% Text & UI Visibility Everywhere)
 # ------------------------------------------------------------------------------
-GLASS_THEME_CSS = """
-/* Background Canvas: Soft Lilac, Sky Blue and Violet organic blurred gradients */
+HIGH_CONTRAST_CSS = """
+/* Background Canvas: Soft subtle blue-grey gradient */
 body, .gradio-container {
-    background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 35%, #f3e8ff 70%, #ede9fe 100%) !important;
+    background: linear-gradient(135deg, #eef2ff 0%, #f1f5f9 50%, #ede9fe 100%) !important;
     background-attachment: fixed !important;
     color: #0f172a !important;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", Helvetica, Arial, sans-serif !important;
-    max-width: 1400px !important;
+    max-width: 1420px !important;
     margin: 0 auto !important;
-    padding: 12px 18px !important;
+    padding: 14px 20px !important;
 }
 
-/* Frosted Glassmorphic Cards */
+/* Force dark readable text everywhere */
+p, span, div, label, li, a, h1, h2, h3, h4, th, td {
+    color: #0f172a !important;
+}
+
+/* Cards: Solid bright white surfaces with subtle border and crisp elevation */
 .glass-card {
-    background: rgba(255, 255, 255, 0.9) !important;
-    backdrop-filter: blur(28px) saturate(190%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
-    border-radius: 24px !important;
-    box-shadow: 0 16px 36px rgba(124, 58, 237, 0.08), 0 2px 6px rgba(255, 255, 255, 0.8) inset !important;
+    background: #ffffff !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06) !important;
     padding: 24px !important;
 }
 
 .glass-nav-card {
-    background: rgba(255, 255, 255, 0.94) !important;
-    backdrop-filter: blur(28px) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
-    border-radius: 24px !important;
-    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.08) !important;
+    background: #ffffff !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05) !important;
     padding: 22px 16px !important;
 }
 
-/* Glass Header Pill */
+/* Header Pill Bar */
 .glass-header-pill {
-    background: rgba(255, 255, 255, 0.92) !important;
-    backdrop-filter: blur(20px) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+    background: #ffffff !important;
+    border: 1.5px solid #cbd5e1 !important;
     border-radius: 50px !important;
-    padding: 12px 26px !important;
+    padding: 12px 28px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.06) !important;
-    margin-bottom: 20px !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+    margin-bottom: 22px !important;
 }
 
-/* Left Sidebar Navigation Pills */
+/* Left Sidebar Navigation Pills: Bold & High Visibility */
 .nav-item-active {
-    background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%) !important;
+    background: #6d28d9 !important;
     color: #ffffff !important;
     font-weight: 800 !important;
-    font-size: 0.95rem !important;
-    border-radius: 16px !important;
-    padding: 13px 18px !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 12px !important;
-    box-shadow: 0 8px 20px rgba(109, 40, 217, 0.35) !important;
-    margin-bottom: 10px !important;
-}
-
-.nav-item-inactive {
-    background: rgba(243, 244, 246, 0.8) !important;
-    color: #1e293b !important;
-    font-weight: 700 !important;
-    font-size: 0.92rem !important;
-    border-radius: 16px !important;
+    font-size: 1.0rem !important;
+    border-radius: 14px !important;
     padding: 12px 18px !important;
     display: flex !important;
     align-items: center !important;
     gap: 12px !important;
-    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 14px rgba(109, 40, 217, 0.3) !important;
+    margin-bottom: 10px !important;
+}
+
+.nav-item-active span {
+    color: #ffffff !important;
+}
+
+.nav-item-inactive {
+    background: #f8fafc !important;
+    color: #1e293b !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    border-radius: 14px !important;
+    padding: 12px 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
     margin-bottom: 8px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    transition: all 0.15s ease !important;
     cursor: pointer !important;
-    border: 1px solid rgba(226, 232, 240, 0.9) !important;
 }
 
 .nav-item-inactive:hover {
-    background: #ffffff !important;
-    color: #4f46e5 !important;
-    transform: translateX(3px) !important;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.12) !important;
+    background: #ede9fe !important;
+    border-color: #8b5cf6 !important;
+    color: #6d28d9 !important;
 }
 
-/* ==========================================================================
-   FIX ISSUE 1: INPUT BOX (HF TOKEN) PURE LIGHT STYLING
-   ========================================================================== */
+.nav-item-inactive span {
+    color: #1e293b !important;
+}
+
+/* Tabs: Bold & Distinct */
+.gradio-container .tab-nav,
+.gradio-container .tabs > .tab-nav {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    padding: 6px !important;
+    border: 1.5px solid #cbd5e1 !important;
+    display: flex !important;
+    gap: 10px !important;
+    margin-bottom: 18px !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+}
+
+.gradio-container .tab-nav button {
+    background: #f1f5f9 !important;
+    color: #334155 !important;
+    font-weight: 800 !important;
+    font-size: 1.0rem !important;
+    border-radius: 12px !important;
+    padding: 12px 24px !important;
+    border: 1px solid #e2e8f0 !important;
+    transition: all 0.15s ease !important;
+}
+
+.gradio-container .tab-nav button:hover {
+    background: #e2e8f0 !important;
+    color: #0f172a !important;
+}
+
+.gradio-container .tab-nav button.selected {
+    background: #6d28d9 !important;
+    color: #ffffff !important;
+    border: 1px solid #6d28d9 !important;
+    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.25) !important;
+}
+
+.gradio-container .tab-nav button.selected span,
+.gradio-container .tab-nav button.selected * {
+    color: #ffffff !important;
+}
+
+/* Preset Buttons: High Contrast Indigo Border Pills */
+.sample-pill-btn {
+    background: #ffffff !important;
+    border: 2px solid #6d28d9 !important;
+    color: #4c1d95 !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 2px 8px rgba(109, 40, 217, 0.1) !important;
+    transition: all 0.15s ease !important;
+}
+
+.sample-pill-btn:hover {
+    background: #6d28d9 !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+}
+
+.sample-pill-btn:hover * {
+    color: #ffffff !important;
+}
+
+/* Radio Buttons: Clean Solid White with Bold Navy Text */
+.gradio-container label {
+    background: #ffffff !important;
+    border: 2px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+}
+
+.gradio-container label.selected,
+.gradio-container label[data-checked="true"] {
+    background: #ede9fe !important;
+    border-color: #6d28d9 !important;
+    color: #4c1d95 !important;
+}
+
+.gradio-container label span {
+    color: #0f172a !important;
+    font-weight: 800 !important;
+}
+
+/* Text Inputs: Crisp White with Dark Text */
 input, textarea, select, .gradio-container input, .gradio-container textarea {
     background-color: #ffffff !important;
     background: #ffffff !important;
     color: #0f172a !important;
-    font-weight: 600 !important;
-    font-size: 0.95rem !important;
-    border: 1.5px solid #c7d2fe !important;
+    font-weight: 700 !important;
+    font-size: 0.98rem !important;
+    border: 2px solid #cbd5e1 !important;
     border-radius: 12px !important;
     padding: 10px 14px !important;
-    box-shadow: 0 2px 6px rgba(148, 163, 184, 0.08) inset !important;
-}
-
-input::placeholder, textarea::placeholder {
-    color: #94a3b8 !important;
-    font-weight: 500 !important;
 }
 
 input:focus, textarea:focus {
-    border-color: #7c3aed !important;
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
-    outline: none !important;
+    border-color: #6d28d9 !important;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.15) !important;
 }
 
-/* ==========================================================================
-   FIX ISSUE 2: MARKDOWN CODE PILLS (`model_5.png`) REMOVE BLACK BADGES
-   ========================================================================== */
-.gradio-container code,
-.gradio-container pre,
-.gradio-container .prose code,
-.gradio-container .markdown-text code {
-    background: #ede9fe !important;
-    color: #5b21b6 !important;
-    font-weight: 700 !important;
-    border: 1px solid #c4b5fd !important;
-    border-radius: 6px !important;
-    padding: 2px 7px !important;
-    font-size: 0.88em !important;
-    box-shadow: none !important;
-}
-
-/* Status message banner */
-.status-badge {
-    background: #f0fdf4 !important;
-    border: 1.5px solid #86efac !important;
-    border-radius: 14px !important;
-    padding: 12px 18px !important;
-    color: #166534 !important;
-    font-weight: 700 !important;
-    font-size: 0.92rem !important;
-    line-height: 1.5 !important;
-    box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06) !important;
-}
-
-/* ==========================================================================
-   FIX ISSUE 3: TAB NAVIGATION BUTTONS (NO BLACK BACKGROUNDS)
-   ========================================================================== */
-.gradio-container .tab-nav,
-.gradio-container .tabs > .tab-nav {
-    background: rgba(241, 245, 249, 0.8) !important;
-    border-radius: 16px !important;
-    padding: 6px !important;
-    border: 1.5px solid #e2e8f0 !important;
-    display: flex !important;
-    gap: 8px !important;
-    margin-bottom: 16px !important;
-}
-
-.gradio-container .tab-nav button {
-    background: transparent !important;
-    color: #475569 !important;
-    font-weight: 800 !important;
-    font-size: 0.95rem !important;
-    border-radius: 12px !important;
-    padding: 10px 22px !important;
-    border: none !important;
-    transition: all 0.2s ease !important;
-}
-
-.gradio-container .tab-nav button:hover {
-    background: rgba(255, 255, 255, 0.9) !important;
-    color: #6d28d9 !important;
-}
-
-.gradio-container .tab-nav button.selected {
-    background: #ffffff !important;
-    color: #6d28d9 !important;
-    border: 1.5px solid #c7d2fe !important;
-    box-shadow: 0 4px 14px rgba(109, 40, 217, 0.15) !important;
-}
-
-/* Stepper Cards in "How it works" */
+/* Stepper Box in 'How it works' */
 .step-item {
-    background: #ffffff !important;
-    border: 1.5px solid #ede9fe !important;
-    border-radius: 18px !important;
+    background: #f8fafc !important;
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 14px !important;
     padding: 14px 16px !important;
     display: flex !important;
     align-items: center !important;
     gap: 14px !important;
     margin-bottom: 12px !important;
-    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.06) !important;
 }
 
 .step-num {
-    background: #ede9fe !important;
-    color: #6d28d9 !important;
-    font-weight: 800 !important;
-    font-size: 0.95rem !important;
-    width: 38px !important;
-    height: 38px !important;
-    border-radius: 12px !important;
+    background: #6d28d9 !important;
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    font-size: 1.0rem !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     flex-shrink: 0 !important;
 }
 
-/* Preset Action Pills */
-.sample-pill-btn {
-    background: #ffffff !important;
-    border: 1.5px solid #c4b5fd !important;
-    color: #4338ca !important;
-    font-weight: 800 !important;
-    border-radius: 14px !important;
-    padding: 10px 16px !important;
-    font-size: 0.9rem !important;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08) !important;
-    transition: all 0.2s ease !important;
-}
-
-.sample-pill-btn:hover {
-    background: #ede9fe !important;
-    border-color: #6d28d9 !important;
-    color: #4c1d95 !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 18px rgba(109, 40, 217, 0.2) !important;
-}
-
-/* Gradient Primary Action Button */
+/* Primary Action Button */
 button.primary-gradient-btn {
     background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%) !important;
     color: #ffffff !important;
-    font-size: 1.05rem !important;
+    font-size: 1.15rem !important;
     font-weight: 800 !important;
-    border-radius: 16px !important;
-    padding: 15px 28px !important;
+    border-radius: 14px !important;
+    padding: 16px 28px !important;
     border: none !important;
-    box-shadow: 0 8px 24px rgba(109, 40, 217, 0.35) !important;
-    transition: all 0.2s ease !important;
+    box-shadow: 0 6px 20px rgba(109, 40, 217, 0.3) !important;
     width: 100% !important;
     margin-top: 14px !important;
     cursor: pointer !important;
@@ -292,21 +288,47 @@ button.primary-gradient-btn {
 button.primary-gradient-btn:hover {
     background: linear-gradient(135deg, #5b21b6 0%, #4338ca 100%) !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 12px 28px rgba(109, 40, 217, 0.45) !important;
+    box-shadow: 0 8px 24px rgba(109, 40, 217, 0.4) !important;
 }
 
-/* Download file preview box light styling */
+button.primary-gradient-btn span,
+button.primary-gradient-btn * {
+    color: #ffffff !important;
+}
+
+/* Verified Status Box: Crisp Light Green with Bold Forest Green Text */
+.status-badge {
+    background: #f0fdf4 !important;
+    border: 2px solid #22c55e !important;
+    border-radius: 12px !important;
+    padding: 12px 18px !important;
+    color: #14532d !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+}
+
+.status-badge code {
+    background: #dcfce7 !important;
+    color: #14532d !important;
+    border: 1px solid #86efac !important;
+    padding: 2px 6px !important;
+    border-radius: 6px !important;
+    font-weight: 800 !important;
+}
+
+/* File Download Box */
 .gradio-container .file-preview-holder,
 .gradio-container [data-testid="file"] {
-    background: #f8fafc !important;
-    border: 1.5px solid #c7d2fe !important;
-    border-radius: 14px !important;
+    background: #ffffff !important;
+    border: 2px solid #cbd5e1 !important;
+    border-radius: 12px !important;
     color: #0f172a !important;
 }
 
 .gradio-container [data-testid="file"] * {
     color: #0f172a !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
 }
 """
 
@@ -336,7 +358,7 @@ def load_preset_4():
 
 def run_virtual_tryon(person_img, garment_img, model_choice, hf_token_str):
     if person_img is None or garment_img is None:
-        return None, '<div style="background: #fef2f2; border: 1.5px solid #fca5a5; border-radius: 14px; padding: 12px 18px; color: #991b1b; font-weight: 700;">⚠️ Please select or upload both a <b>Person Image</b> and a <b>Garment Image</b>.</div>', None
+        return None, '<div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 12px; padding: 12px 18px; color: #991b1b; font-weight: 800;">⚠️ Please select or upload both a <b>Person Image</b> and a <b>Garment Image</b>.</div>', None
 
     p_name = Path(person_img).name.lower()
     c_name = Path(garment_img).name.lower()
@@ -388,7 +410,7 @@ def run_virtual_tryon(person_img, garment_img, model_choice, hf_token_str):
         err_text = str(e)
         if "quota" in err_text.lower():
             err_msg = (
-                '<div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 14px; padding: 14px 18px; color: #92400e; font-weight: 700; line-height: 1.5;">'
+                '<div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 12px; padding: 14px 18px; color: #78350f; font-weight: 800; line-height: 1.5;">'
                 '⚠️ <b>GPU Compute Limit Reached for Custom Uploads:</b><br>'
                 'The public free ZeroGPU server on Hugging Face has temporarily reached its daily quota.<br>'
                 '• <b>Instant Test:</b> Click any of the 4 benchmark preset buttons above.<br>'
@@ -396,38 +418,26 @@ def run_virtual_tryon(person_img, garment_img, model_choice, hf_token_str):
                 '</div>'
             )
         else:
-            err_msg = f'<div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 14px; padding: 14px 18px; color: #92400e; font-weight: 700;">⚠️ <b>Notice:</b> {err_text[:200]}</div>'
+            err_msg = f'<div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 12px; padding: 14px 18px; color: #78350f; font-weight: 800;">⚠️ <b>Notice:</b> {err_text[:200]}</div>'
         return None, err_msg, None
 
 
 # ==============================================================================
-# UI DEFINITION (LIGHT THEME EXPLICITLY CONFIGURED)
+# UI DEFINITION (HIGH CONTRAST & PURE VISIBILITY)
 # ==============================================================================
-custom_theme = gr.themes.Soft(
-    primary_hue="violet",
-    secondary_hue="indigo",
-    neutral_hue="slate"
-).set(
-    body_background_fill="linear-gradient(135deg, #dbeafe 0%, #e0e7ff 35%, #f3e8ff 70%, #ede9fe 100%)",
-    block_background_fill="#ffffff",
-    block_border_color="#e0e7ff",
-    input_background_fill="#ffffff",
-    input_border_color="#c7d2fe"
-)
-
-with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
+with gr.Blocks(title="Virtual Try-On") as demo:
 
     # Top Search & Profile Bar
     gr.HTML(
         """
         <div class="glass-header-pill">
             <div style="display: flex; align-items: center; gap: 14px; flex-grow: 1;">
-                <span style="font-size: 1.25rem; color: #4f46e5;">🔍</span>
-                <span style="font-size: 0.98rem; font-weight: 700; color: #1e293b;">Search clothing, styles, or features...</span>
+                <span style="font-size: 1.35rem; color: #6d28d9;">🔍</span>
+                <span style="font-size: 1.05rem; font-weight: 800; color: #0f172a;">Search clothing, styles, or features...</span>
             </div>
             <div style="display: flex; align-items: center; gap: 20px;">
-                <span style="font-size: 1.3rem; cursor: pointer; position: relative;">🔔<span style="position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: #8b5cf6; border-radius: 50%;"></span></span>
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: #ede9fe; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #6d28d9; font-size: 0.95rem; border: 2px solid #c7d2fe; box-shadow: 0 4px 10px rgba(109, 40, 217, 0.15);">
+                <span style="font-size: 1.4rem; cursor: pointer; position: relative;">🔔<span style="position: absolute; top: -2px; right: -2px; width: 9px; height: 9px; background: #8b5cf6; border-radius: 50%;"></span></span>
+                <div style="width: 42px; height: 42px; border-radius: 50%; background: #6d28d9; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #ffffff; font-size: 1.05rem; box-shadow: 0 4px 12px rgba(109, 40, 217, 0.3);">
                     IB
                 </div>
             </div>
@@ -442,32 +452,32 @@ with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
         with gr.Column(scale=1, min_width=220, elem_classes=["glass-nav-card"]):
             gr.HTML(
                 """
-                <div style="display: flex; align-items: center; gap: 12px; padding: 6px 8px 22px 8px; border-bottom: 2px solid #e0e7ff; margin-bottom: 18px;">
-                    <div style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: 0 6px 16px rgba(109, 40, 217, 0.3);">
+                <div style="display: flex; align-items: center; gap: 12px; padding: 6px 8px 22px 8px; border-bottom: 2px solid #e2e8f0; margin-bottom: 20px;">
+                    <div style="width: 46px; height: 46px; border-radius: 14px; background: #6d28d9; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 4px 14px rgba(109, 40, 217, 0.35);">
                         👔
                     </div>
                     <div>
-                        <div style="font-weight: 900; font-size: 1.15rem; line-height: 1.1; color: #0f172a; letter-spacing: -0.01em;">VIRTUAL</div>
-                        <div style="font-weight: 900; font-size: 1.15rem; line-height: 1.1; color: #6d28d9; letter-spacing: -0.01em;">TRY-ON</div>
+                        <div style="font-weight: 900; font-size: 1.2rem; line-height: 1.1; color: #0f172a; letter-spacing: -0.01em;">VIRTUAL</div>
+                        <div style="font-weight: 900; font-size: 1.2rem; line-height: 1.1; color: #6d28d9; letter-spacing: -0.01em;">TRY-ON</div>
                     </div>
                 </div>
 
                 <div class="nav-item-inactive">
-                    <span style="font-size: 1.15rem;">📊</span> <span>Dashboard</span>
+                    <span style="font-size: 1.25rem;">📊</span> <span>Dashboard</span>
                 </div>
                 <div class="nav-item-active">
-                    <span style="font-size: 1.15rem;">👔</span> <span>Try-On</span>
+                    <span style="font-size: 1.25rem;">👔</span> <span>Try-On</span>
                 </div>
                 <div class="nav-item-inactive">
-                    <span style="font-size: 1.15rem;">📚</span> <span>My Wardrobe</span>
+                    <span style="font-size: 1.25rem;">📚</span> <span>My Wardrobe</span>
                 </div>
                 <div class="nav-item-inactive">
-                    <span style="font-size: 1.15rem;">⚙️</span> <span>Settings</span>
+                    <span style="font-size: 1.25rem;">⚙️</span> <span>Settings</span>
                 </div>
 
-                <div style="margin-top: 32px; padding: 14px; background: #ffffff; border-radius: 16px; border: 1.5px solid #c7d2fe; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08);">
-                    <div style="font-size: 0.84rem; font-weight: 900; color: #4f46e5; margin-bottom: 4px;">MODEL ENGINE</div>
-                    <div style="font-size: 0.82rem; font-weight: 700; color: #1e293b;">CatVTON (48.7M) & IDM-VTON Dual UNet</div>
+                <div style="margin-top: 36px; padding: 16px; background: #f8fafc; border-radius: 14px; border: 2px solid #cbd5e1;">
+                    <div style="font-size: 0.86rem; font-weight: 900; color: #6d28d9; margin-bottom: 4px;">MODEL ENGINE</div>
+                    <div style="font-size: 0.84rem; font-weight: 800; color: #0f172a;">CatVTON (48.7M) & IDM-VTON Dual UNet</div>
                 </div>
                 """
             )
@@ -478,13 +488,13 @@ with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
         with gr.Column(scale=5):
             gr.HTML(
                 """
-                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 18px; padding-left: 4px;">
-                    <div style="width: 48px; height: 48px; background: #ede9fe; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding-left: 4px;">
+                    <div style="width: 50px; height: 50px; background: #ede9fe; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 12px rgba(109, 40, 217, 0.2);">
                         👔
                     </div>
                     <div>
-                        <h1 style="font-size: 2.2rem; font-weight: 900; color: #0f172a; margin: 0; line-height: 1.1; letter-spacing: -0.02em;">Virtual <span style="color: #6d28d9;">Try-On</span></h1>
-                        <p style="font-size: 1.05rem; color: #475569; margin: 4px 0 0 0; font-weight: 700;">See it. Love it. Wear it.</p>
+                        <h1 style="font-size: 2.3rem; font-weight: 900; color: #0f172a; margin: 0; line-height: 1.1; letter-spacing: -0.02em;">Virtual <span style="color: #6d28d9;">Try-On</span></h1>
+                        <p style="font-size: 1.1rem; color: #334155; margin: 4px 0 0 0; font-weight: 800;">See it. Love it. Wear it.</p>
                     </div>
                 </div>
                 """
@@ -498,7 +508,7 @@ with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
                         with gr.Column(scale=3, elem_classes=["glass-card"]):
                             gr.HTML(
                                 """
-                                <h3 style="font-size: 1.2rem; font-weight: 900; color: #0f172a; margin: 0 0 14px 0;">
+                                <h3 style="font-size: 1.25rem; font-weight: 900; color: #0f172a; margin: 0 0 16px 0;">
                                     Select a Verified Benchmark or Upload Custom
                                 </h3>
                                 """
@@ -545,35 +555,35 @@ with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
                             gr.HTML(
                                 """
                                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
-                                    <span style="font-size: 1.3rem; color: #6d28d9;">✨</span>
-                                    <h3 style="margin: 0; font-size: 1.25rem; font-weight: 900; color: #0f172a;">How it works</h3>
+                                    <span style="font-size: 1.4rem; color: #6d28d9;">✨</span>
+                                    <h3 style="margin: 0; font-size: 1.3rem; font-weight: 900; color: #0f172a;">How it works</h3>
                                 </div>
 
                                 <div class="step-item">
                                     <div class="step-num">01</div>
                                     <div>
-                                        <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a;">Upload Your Photo</div>
-                                        <div style="font-size: 0.84rem; font-weight: 600; color: #475569;">Use a clear, front-facing image.</div>
+                                        <div style="font-weight: 900; font-size: 1.05rem; color: #0f172a;">Upload Your Photo</div>
+                                        <div style="font-size: 0.88rem; font-weight: 700; color: #334155;">Use a clear, front-facing image.</div>
                                     </div>
                                 </div>
 
                                 <div class="step-item">
                                     <div class="step-num">02</div>
                                     <div>
-                                        <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a;">Choose a Garment</div>
-                                        <div style="font-size: 0.84rem; font-weight: 600; color: #475569;">Select or upload the clothing you want to try.</div>
+                                        <div style="font-weight: 900; font-size: 1.05rem; color: #0f172a;">Choose a Garment</div>
+                                        <div style="font-size: 0.88rem; font-weight: 700; color: #334155;">Select or upload the clothing you want to try.</div>
                                     </div>
                                 </div>
 
                                 <div class="step-item">
                                     <div class="step-num">03</div>
                                     <div>
-                                        <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a;">Generate Try-On</div>
-                                        <div style="font-size: 0.84rem; font-weight: 600; color: #475569;">Our AI creates a realistic preview in seconds.</div>
+                                        <div style="font-weight: 900; font-size: 1.05rem; color: #0f172a;">Generate Try-On</div>
+                                        <div style="font-size: 0.88rem; font-weight: 700; color: #334155;">Our AI creates a realistic preview in seconds.</div>
                                     </div>
                                 </div>
 
-                                <h3 style="font-size: 1.2rem; font-weight: 900; color: #0f172a; margin: 18px 0 8px 0;">
+                                <h3 style="font-size: 1.25rem; font-weight: 900; color: #0f172a; margin: 20px 0 10px 0;">
                                     Generated Result Preview
                                 </h3>
                                 """
@@ -603,7 +613,7 @@ with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
                 # TAB 2: MODEL COMPARISON
                 with gr.Tab("⚖️ Model Comparison (CatVTON vs IDM-VTON)"):
                     with gr.Column(elem_classes=["glass-card"]):
-                        gr.HTML("<h3 style='font-weight: 900; color: #0f172a; font-size: 1.25rem;'>Empirical Comparison on Identical Benchmark Pair</h3>")
+                        gr.HTML("<h3 style='font-weight: 900; color: #0f172a; font-size: 1.3rem; margin-bottom: 14px;'>Empirical Comparison on Identical Benchmark Pair</h3>")
                         with gr.Row():
                             with gr.Column():
                                 gr.Image(value=str(FEMALE_PERSON_2), label="Person (Input)")
@@ -620,7 +630,7 @@ with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
                 # TAB 3: RESEARCH DATA & CHARTS
                 with gr.Tab("📊 Research Sweeps & Metrics"):
                     with gr.Column(elem_classes=["glass-card"]):
-                        gr.HTML("<h3 style='font-weight: 900; color: #0f172a; font-size: 1.25rem;'>Hyperparameter Sweeps & Analysis</h3>")
+                        gr.HTML("<h3 style='font-weight: 900; color: #0f172a; font-size: 1.3rem; margin-bottom: 14px;'>Hyperparameter Sweeps & Analysis</h3>")
                         with gr.Row():
                             with gr.Column():
                                 gr.Image(value=str(ASSETS_DIR / "cfg_sweep" / "cfg_sweep_banner.png"), label="CFG Sweep [1.5 | 2.5 | 3.5 | 5.0]")
@@ -634,7 +644,7 @@ with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
     # Footer
     gr.HTML(
         """
-        <div style="text-align: center; color: #475569; font-weight: 700; font-size: 0.92rem; padding: 22px 0 10px 0; margin-top: 18px;">
+        <div style="text-align: center; color: #334155; font-weight: 800; font-size: 0.95rem; padding: 24px 0 10px 0; margin-top: 20px;">
             ✨ <b>Virtual Try-On Research Lab</b> • Generative AI University Project • CatVTON & IDM-VTON
         </div>
         """
@@ -642,5 +652,5 @@ with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
 
 
 if __name__ == "__main__":
-    print("Launching Pure Light Frosted Glass Virtual Try-On UI on http://127.0.0.1:7860 ...")
-    demo.launch(server_name="127.0.0.1", server_port=7860, share=False, css=GLASS_THEME_CSS)
+    print("Launching High-Contrast Virtual Try-On UI on http://127.0.0.1:7860 ...")
+    demo.launch(server_name="127.0.0.1", server_port=7860, share=False, css=HIGH_CONTRAST_CSS)
