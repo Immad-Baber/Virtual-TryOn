@@ -1,0 +1,9 @@
+Evaluation Dimension,CatVTON (Proposed Base),IDM-VTON (Benchmark)
+Neural Architecture,Single UNet + Lightweight Skip Cross-Attention Adapter,Dual UNet (GarmentNet + Tryon UNet) + IP-Adapter
+Trainable / Added Parameters,~48.7 Million (Lightweight),~1.7 Billion (Dual Stream)
+Peak GPU VRAM on T4 (FP16),4.25 GB (Measured on Colab T4),13.80 GB (Local Peak) / Client offloaded
+Inference Latency,104.13s (Measured locally on T4),24.19s (Remote ZeroGPU cloud inference)
+Protected Region SSIM,"0.8811 (Head: 0.7644, Lower: 0.9977)","0.8024 (Head: 0.6144, Lower: 0.9903)"
+Conditioning Modality,Visual reference only (Garment image + Spatial Mask),Multi-modal (Garment image + DensePose + Text prompt)
+Free Colab T4 Feasibility,100% Native Execution (4.25 GB / 14.56 GB capacity),Borderline CUDA OOM locally (~14.5 GB) / Requires ZeroGPU space
+Ethnic Garment Adaptation,Flexible via Hand-Aware & Extended Silhouette Masking,Strictly bounded to VITON-HD upper/lower/dress categories

@@ -1,0 +1,11 @@
+Experiment,Parameter,Steps,Latency_s,Peak_VRAM_GB,Hardware,Observation
+CFG_Sweep,CFG=1.5,50,96.41,4.25,Tesla T4 (Colab),"Under-conditioned; soft drape, muted saturation"
+CFG_Sweep,CFG=2.5,50,104.13,4.25,Tesla T4 (Colab),Optimal balance; sharp pattern & natural lighting
+CFG_Sweep,CFG=3.5,50,108.63,4.25,Tesla T4 (Colab),Crisp micro-textures; slightly elevated contrast
+CFG_Sweep,CFG=5.0,50,110.88,4.25,Tesla T4 (Colab),"Over-conditioned; contrast blowup, boundary artifacts"
+Step_Sweep,Steps=20,20,45.25,4.25,Tesla T4 (Colab),"2.46x speedup; macro shape intact, slight texture loss"
+Step_Sweep,Steps=35,35,78.17,4.25,Tesla T4 (Colab),1.42x speedup; 95% photorealism achieved
+Step_Sweep,Steps=50,50,111.22,4.25,Tesla T4 (Colab),Baseline production quality; full high-frequency detail
+Mask_Sweep,Geometric Polygon,50,110.09,4.25,Tesla T4 (Colab),"Fails posture; cuts sleeves, generates boxy shirts"
+Mask_Sweep,SegFormer Anatomical,50,109.95,4.25,Tesla T4 (Colab),Hand-aware cutoff; protects wrists and fingers
+Mask_Sweep,Extended Kurta,50,110.3,4.25,Tesla T4 (Colab),Extends past waist; enables long Pakistani kurtas
