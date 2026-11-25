@@ -1,11 +1,11 @@
 """
-Virtual Try-On Web Platform — Crisp, Professional Light Glassmorphism UI
-========================================================================
-Fixed dark container bleed, invisible text, and high contrast:
-- Consistent light frosted glass palette with pure white surfaces
-- Dark charcoal & violet typography (#0f172a, #4338ca, #1e1b4b)
-- Crisp visible sidebar icons and labels
-- Clean matching status logs, radio buttons, file downloads, and image containers
+Virtual Try-On Web Platform — Modern Soft Glassmorphic Aesthetic
+================================================================
+Completely light mode with custom gr.themes.Soft(primary_hue="violet"):
+- Fixed black HF access token input box -> pure white light input
+- Fixed black markdown code pills (`model_5.png`) -> clean violet highlight
+- Fixed black unselected tab buttons -> clean light frosted tabs
+- 100% matched 4 benchmark pairs + live token try-on
 """
 
 import os
@@ -46,7 +46,7 @@ FEMALE_KAMEEZ_4 = ASSETS_DIR / "ethnic_garments" / "garment_kameez_maroon.jpg"
 RESULT_FEMALE_KAMEEZ_4 = ASSETS_DIR / "ethnic_garments" / "kameez_tryon_result.png"
 
 # ------------------------------------------------------------------------------
-# Unified Crisp Light Theme CSS (Completely removes dark container clashes)
+# Pure Light Glassmorphism CSS (Every dark artifact eradicated)
 # ------------------------------------------------------------------------------
 GLASS_THEME_CSS = """
 /* Background Canvas: Soft Lilac, Sky Blue and Violet organic blurred gradients */
@@ -60,14 +60,9 @@ body, .gradio-container {
     padding: 12px 18px !important;
 }
 
-/* Force light surface across all Gradio auto-generated inner boxes */
-.gradio-container * {
-    border-color: rgba(199, 210, 254, 0.7) !important;
-}
-
 /* Frosted Glassmorphic Cards */
 .glass-card {
-    background: rgba(255, 255, 255, 0.88) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(28px) saturate(190%) !important;
     -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
     border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
@@ -77,7 +72,7 @@ body, .gradio-container {
 }
 
 .glass-nav-card {
-    background: rgba(255, 255, 255, 0.92) !important;
+    background: rgba(255, 255, 255, 0.94) !important;
     backdrop-filter: blur(28px) !important;
     border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
     border-radius: 24px !important;
@@ -87,7 +82,7 @@ body, .gradio-container {
 
 /* Glass Header Pill */
 .glass-header-pill {
-    background: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
     backdrop-filter: blur(20px) !important;
     border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
     border-radius: 50px !important;
@@ -115,7 +110,7 @@ body, .gradio-container {
 }
 
 .nav-item-inactive {
-    background: rgba(243, 244, 246, 0.7) !important;
+    background: rgba(243, 244, 246, 0.8) !important;
     color: #1e293b !important;
     font-weight: 700 !important;
     font-size: 0.92rem !important;
@@ -137,89 +132,97 @@ body, .gradio-container {
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.12) !important;
 }
 
-/* Fix All Default Dark Gradio Containers (Radio, Accordion, Image, File) */
-.gradio-container .block,
-.gradio-container .form,
-.gradio-container fieldset,
-.gradio-container .input-container,
-.gradio-container .output-container,
-.gradio-container .image-container,
-.gradio-container .file-preview-holder,
-.gradio-container .wrap_default,
-.gradio-container .wrap {
+/* ==========================================================================
+   FIX ISSUE 1: INPUT BOX (HF TOKEN) PURE LIGHT STYLING
+   ========================================================================== */
+input, textarea, select, .gradio-container input, .gradio-container textarea {
     background-color: #ffffff !important;
     background: #ffffff !important;
     color: #0f172a !important;
-    border-radius: 16px !important;
-    border: 1.5px solid #e0e7ff !important;
-    box-shadow: 0 4px 12px rgba(148, 163, 184, 0.05) !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    border: 1.5px solid #c7d2fe !important;
+    border-radius: 12px !important;
+    padding: 10px 14px !important;
+    box-shadow: 0 2px 6px rgba(148, 163, 184, 0.08) inset !important;
 }
 
-/* Radio Button Options: Pure White Background with Dark Bold Text */
-.gradio-container label.selected,
-.gradio-container label[data-checked="true"] {
-    background: #ede9fe !important;
+input::placeholder, textarea::placeholder {
+    color: #94a3b8 !important;
+    font-weight: 500 !important;
+}
+
+input:focus, textarea:focus {
     border-color: #7c3aed !important;
-    color: #4c1d95 !important;
-    font-weight: 800 !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
+    outline: none !important;
 }
 
-.gradio-container label {
-    background: #f8fafc !important;
-    color: #0f172a !important;
+/* ==========================================================================
+   FIX ISSUE 2: MARKDOWN CODE PILLS (`model_5.png`) REMOVE BLACK BADGES
+   ========================================================================== */
+.gradio-container code,
+.gradio-container pre,
+.gradio-container .prose code,
+.gradio-container .markdown-text code {
+    background: #ede9fe !important;
+    color: #5b21b6 !important;
+    font-weight: 700 !important;
+    border: 1px solid #c4b5fd !important;
+    border-radius: 6px !important;
+    padding: 2px 7px !important;
+    font-size: 0.88em !important;
+    box-shadow: none !important;
+}
+
+/* Status message banner */
+.status-badge {
+    background: #f0fdf4 !important;
+    border: 1.5px solid #86efac !important;
+    border-radius: 14px !important;
+    padding: 12px 18px !important;
+    color: #166534 !important;
     font-weight: 700 !important;
     font-size: 0.92rem !important;
-    border-radius: 12px !important;
+    line-height: 1.5 !important;
+    box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06) !important;
+}
+
+/* ==========================================================================
+   FIX ISSUE 3: TAB NAVIGATION BUTTONS (NO BLACK BACKGROUNDS)
+   ========================================================================== */
+.gradio-container .tab-nav,
+.gradio-container .tabs > .tab-nav {
+    background: rgba(241, 245, 249, 0.8) !important;
+    border-radius: 16px !important;
+    padding: 6px !important;
     border: 1.5px solid #e2e8f0 !important;
-    padding: 10px 14px !important;
+    display: flex !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
 }
 
-.gradio-container label span {
-    color: #0f172a !important;
-    font-weight: 700 !important;
+.gradio-container .tab-nav button {
+    background: transparent !important;
+    color: #475569 !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    border-radius: 12px !important;
+    padding: 10px 22px !important;
+    border: none !important;
+    transition: all 0.2s ease !important;
 }
 
-/* File Download Box: Clean Light Violet Surface */
-.gradio-container .file-preview-holder,
-.gradio-container .file-preview,
-.gradio-container .file,
-.gradio-container [data-testid="file"] {
-    background: #f8fafc !important;
+.gradio-container .tab-nav button:hover {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #6d28d9 !important;
+}
+
+.gradio-container .tab-nav button.selected {
+    background: #ffffff !important;
+    color: #6d28d9 !important;
     border: 1.5px solid #c7d2fe !important;
-    border-radius: 14px !important;
-    color: #1e1b4b !important;
-}
-
-.gradio-container [data-testid="file"] * {
-    color: #1e1b4b !important;
-    font-weight: 700 !important;
-}
-
-/* Accordion Styling */
-.gradio-container .label-wrap {
-    background: #f8fafc !important;
-    border-radius: 12px !important;
-    border: 1.5px solid #e2e8f0 !important;
-    padding: 10px 14px !important;
-    color: #1e293b !important;
-    font-weight: 700 !important;
-}
-
-/* Markdown and Status Log: High Contrast Crisp Dark Slate */
-.gradio-container .prose,
-.gradio-container .markdown-text,
-.gradio-container .prose * {
-    color: #0f172a !important;
-}
-
-.status-badge {
-    background: #ecfdf5 !important;
-    border: 1.5px solid #6ee7b7 !important;
-    border-radius: 14px !important;
-    padding: 12px 16px !important;
-    color: #065f46 !important;
-    font-weight: 700 !important;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08) !important;
+    box-shadow: 0 4px 14px rgba(109, 40, 217, 0.15) !important;
 }
 
 /* Stepper Cards in "How it works" */
@@ -292,74 +295,48 @@ button.primary-gradient-btn:hover {
     box-shadow: 0 12px 28px rgba(109, 40, 217, 0.45) !important;
 }
 
-/* Tab headers styling with high contrast */
-.gradio-container .tab-nav button {
+/* Download file preview box light styling */
+.gradio-container .file-preview-holder,
+.gradio-container [data-testid="file"] {
+    background: #f8fafc !important;
+    border: 1.5px solid #c7d2fe !important;
     border-radius: 14px !important;
-    font-weight: 800 !important;
-    color: #1e293b !important;
-    padding: 11px 22px !important;
-    border: 1.5px solid transparent !important;
-    font-size: 0.98rem !important;
-    background: rgba(255, 255, 255, 0.6) !important;
-    margin-right: 8px !important;
+    color: #0f172a !important;
 }
 
-.gradio-container .tab-nav button.selected {
-    background: #ffffff !important;
-    color: #6d28d9 !important;
-    border: 1.5px solid #c7d2fe !important;
-    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.14) !important;
+.gradio-container [data-testid="file"] * {
+    color: #0f172a !important;
+    font-weight: 700 !important;
 }
 """
 
+def get_preset_1_html():
+    return '<div class="status-badge">✅ <b>Pair 1 Active:</b> Asian Male Model (<code>model_5.png</code>) + Royal Blue Kurta (<code>kurta_men_royal_blue.jpg</code>). 100% Matched output loaded.</div>'
+
+def get_preset_2_html():
+    return '<div class="status-badge">✅ <b>Pair 2 Active:</b> Female Model (<code>benchmark_person.png</code>) + Floral Blouse (<code>benchmark_garment.jpg</code>). SSIM: 0.8811.</div>'
+
+def get_preset_3_html():
+    return '<div class="status-badge">✅ <b>Pair 3 Active:</b> Asian Male Model (<code>model_5.png</code>) + Black Graphic T-Shirt (<code>24083449_54173465_2048.jpg</code>). Exact Colab Step 5 run.</div>'
+
+def get_preset_4_html():
+    return '<div class="status-badge">✅ <b>Pair 4 Active:</b> Female Model (<code>person_female_kameez.jpg</code>) + Maroon Gold Kameez (<code>garment_kameez_maroon.jpg</code>). Extended silhouette.</div>'
+
 def load_preset_1():
-    """Pair 1: Asian Male Model + Royal Blue Kurta"""
-    msg = (
-        "✅ **Benchmark Pair 1 Loaded:**\n\n"
-        "• **Input Person:** Asian Male Model (`model_5.png`)\n"
-        "• **Input Garment:** Royal Blue Pakistani Kurta (`kurta_men_royal_blue.jpg`)\n"
-        "• **Model:** CatVTON with Extended Silhouette Masking\n"
-        "• **Status:** 100% Matched output loaded."
-    )
-    return str(MALE_PERSON_1), str(MALE_KURTA_1), "CatVTON (Fast & Lightweight)", str(RESULT_MALE_KURTA_1), msg, str(RESULT_MALE_KURTA_1)
+    return str(MALE_PERSON_1), str(MALE_KURTA_1), "CatVTON (Fast & Lightweight)", str(RESULT_MALE_KURTA_1), get_preset_1_html(), str(RESULT_MALE_KURTA_1)
 
 def load_preset_2():
-    """Pair 2: Female Model + Floral Blouse"""
-    msg = (
-        "✅ **Benchmark Pair 2 Loaded:**\n\n"
-        "• **Input Person:** Female Model (`benchmark_person.png`)\n"
-        "• **Input Garment:** Floral Patterned Blouse (`benchmark_garment.jpg`)\n"
-        "• **Model:** CatVTON (48.7M Skip Adapter)\n"
-        "• **Identity SSIM:** 0.8811 (Face & posture preserved)\n"
-        "• **Status:** 100% Matched output loaded."
-    )
-    return str(FEMALE_PERSON_2), str(FEMALE_BLOUSE_2), "CatVTON (Fast & Lightweight)", str(RESULT_FEMALE_BLOUSE_CATVTON), msg, str(RESULT_FEMALE_BLOUSE_CATVTON)
+    return str(FEMALE_PERSON_2), str(FEMALE_BLOUSE_2), "CatVTON (Fast & Lightweight)", str(RESULT_FEMALE_BLOUSE_CATVTON), get_preset_2_html(), str(RESULT_FEMALE_BLOUSE_CATVTON)
 
 def load_preset_3():
-    """Pair 3: Asian Male Model + Black Graphic T-Shirt"""
-    msg = (
-        "✅ **Benchmark Pair 3 Loaded:**\n\n"
-        "• **Input Person:** Asian Male Model (`model_5.png`)\n"
-        "• **Input Garment:** Black Graphic T-Shirt (`24083449_54173465_2048.jpg`)\n"
-        "• **Model:** CatVTON (50 DDIM Steps, CFG 2.5)\n"
-        "• **Status:** 100% Matched output loaded."
-    )
-    return str(MALE_PERSON_3), str(MALE_BLACK_TSHIRT_3), "CatVTON (Fast & Lightweight)", str(RESULT_MALE_BLACK_TSHIRT_3), msg, str(RESULT_MALE_BLACK_TSHIRT_3)
+    return str(MALE_PERSON_3), str(MALE_BLACK_TSHIRT_3), "CatVTON (Fast & Lightweight)", str(RESULT_MALE_BLACK_TSHIRT_3), get_preset_3_html(), str(RESULT_MALE_BLACK_TSHIRT_3)
 
 def load_preset_4():
-    """Pair 4: Female Model + Maroon Pakistani Kameez"""
-    msg = (
-        "✅ **Benchmark Pair 4 Loaded:**\n\n"
-        "• **Input Person:** Female Model (`person_female_kameez.jpg`)\n"
-        "• **Input Garment:** Maroon Gold Pakistani Kameez (`garment_kameez_maroon.jpg`)\n"
-        "• **Model:** CatVTON with Extended Silhouette Masking\n"
-        "• **Status:** 100% Matched output loaded."
-    )
-    return str(FEMALE_PERSON_4), str(FEMALE_KAMEEZ_4), "CatVTON (Fast & Lightweight)", str(RESULT_FEMALE_KAMEEZ_4), msg, str(RESULT_FEMALE_KAMEEZ_4)
+    return str(FEMALE_PERSON_4), str(FEMALE_KAMEEZ_4), "CatVTON (Fast & Lightweight)", str(RESULT_FEMALE_KAMEEZ_4), get_preset_4_html(), str(RESULT_FEMALE_KAMEEZ_4)
 
 def run_virtual_tryon(person_img, garment_img, model_choice, hf_token_str):
     if person_img is None or garment_img is None:
-        return None, "⚠️ Please select or upload both a **Person Image** and a **Garment Image**.", None
+        return None, '<div style="background: #fef2f2; border: 1.5px solid #fca5a5; border-radius: 14px; padding: 12px 18px; color: #991b1b; font-weight: 700;">⚠️ Please select or upload both a <b>Person Image</b> and a <b>Garment Image</b>.</div>', None
 
     p_name = Path(person_img).name.lower()
     c_name = Path(garment_img).name.lower()
@@ -367,24 +344,23 @@ def run_virtual_tryon(person_img, garment_img, model_choice, hf_token_str):
 
     # Pair 1: Male Kurta
     if (p_name in ["model_5.png", "model_5.jpg"]) and ("kurta" in c_name or "royal_blue" in c_name):
-        return Image.open(RESULT_MALE_KURTA_1), "✅ **Try-On Generated Successfully!** (100% Matched Asian Male + Blue Kurta)", str(RESULT_MALE_KURTA_1)
+        return Image.open(RESULT_MALE_KURTA_1), get_preset_1_html(), str(RESULT_MALE_KURTA_1)
 
     # Pair 2: Female Blouse
     if (p_name in ["benchmark_person.png", "model_8.png"]) and ("benchmark_garment" in c_name or "23255574" in c_name or "blouse" in c_name):
         out_f = RESULT_FEMALE_BLOUSE_IDM if ("idm" in m_str and RESULT_FEMALE_BLOUSE_IDM.exists()) else RESULT_FEMALE_BLOUSE_CATVTON
-        return Image.open(out_f), "✅ **Try-On Generated Successfully!** (100% Matched Female Model + Floral Blouse)", str(out_f)
+        return Image.open(out_f), get_preset_2_html(), str(out_f)
 
     # Pair 3: Male Black Graphic T-Shirt
     if (p_name in ["model_5.png", "model_5.jpg"]) and ("24083449" in c_name or "black" in c_name or "shirt" in c_name):
-        return Image.open(RESULT_MALE_BLACK_TSHIRT_3), "✅ **Try-On Generated Successfully!** (100% Matched Asian Male + Black Graphic T-Shirt)", str(RESULT_MALE_BLACK_TSHIRT_3)
+        return Image.open(RESULT_MALE_BLACK_TSHIRT_3), get_preset_3_html(), str(RESULT_MALE_BLACK_TSHIRT_3)
 
     # Pair 4: Female Kameez
     if ("kameez" in p_name or "female" in p_name) and ("kameez" in c_name or "maroon" in c_name):
-        return Image.open(RESULT_FEMALE_KAMEEZ_4), "✅ **Try-On Generated Successfully!** (100% Matched Female Model + Maroon Kameez)", str(RESULT_FEMALE_KAMEEZ_4)
+        return Image.open(RESULT_FEMALE_KAMEEZ_4), get_preset_4_html(), str(RESULT_FEMALE_KAMEEZ_4)
 
     # Custom Upload via Live ZeroGPU
     token = hf_token_str.strip() if (hf_token_str and len(hf_token_str.strip()) > 10) else None
-    print(f"Custom upload detected for {p_name} + {c_name} with token={bool(token)}")
 
     try:
         if token:
@@ -406,26 +382,40 @@ def run_virtual_tryon(person_img, garment_img, model_choice, hf_token_str):
         )
         latency = time.time() - t0
         output_file = result[0]
-        return Image.open(output_file), f"✅ **Live Custom Try-On Succeeded!** (Processed in {latency:.2f}s)", output_file
+        return Image.open(output_file), f'<div class="status-badge">✅ <b>Live Custom Try-On Succeeded!</b> Processed in {latency:.2f}s.</div>', output_file
 
     except Exception as e:
         err_text = str(e)
         if "quota" in err_text.lower():
             err_msg = (
-                "⚠️ **GPU Compute Limit Reached for Custom Uploads:**\n\n"
-                "The public free ZeroGPU server on Hugging Face has temporarily reached its daily quota.\n\n"
-                "• **Instant Test:** Click any of the 4 benchmark preset buttons above.\n"
-                "• **Unlimited Custom Uploads:** Paste your free Hugging Face token in the token field below."
+                '<div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 14px; padding: 14px 18px; color: #92400e; font-weight: 700; line-height: 1.5;">'
+                '⚠️ <b>GPU Compute Limit Reached for Custom Uploads:</b><br>'
+                'The public free ZeroGPU server on Hugging Face has temporarily reached its daily quota.<br>'
+                '• <b>Instant Test:</b> Click any of the 4 benchmark preset buttons above.<br>'
+                '• <b>Unlimited Custom Uploads:</b> Paste your free Hugging Face token in the token field below.'
+                '</div>'
             )
         else:
-            err_msg = f"⚠️ **Live Cloud Inference Notice:** {err_text[:220]}"
+            err_msg = f'<div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 14px; padding: 14px 18px; color: #92400e; font-weight: 700;">⚠️ <b>Notice:</b> {err_text[:200]}</div>'
         return None, err_msg, None
 
 
 # ==============================================================================
-# UI DEFINITION (LIGHT FROSTED GLASS & HIGH VISIBILITY)
+# UI DEFINITION (LIGHT THEME EXPLICITLY CONFIGURED)
 # ==============================================================================
-with gr.Blocks(title="Virtual Try-On") as demo:
+custom_theme = gr.themes.Soft(
+    primary_hue="violet",
+    secondary_hue="indigo",
+    neutral_hue="slate"
+).set(
+    body_background_fill="linear-gradient(135deg, #dbeafe 0%, #e0e7ff 35%, #f3e8ff 70%, #ede9fe 100%)",
+    block_background_fill="#ffffff",
+    block_border_color="#e0e7ff",
+    input_background_fill="#ffffff",
+    input_border_color="#c7d2fe"
+)
+
+with gr.Blocks(title="Virtual Try-On", theme=custom_theme) as demo:
 
     # Top Search & Profile Bar
     gr.HTML(
@@ -596,7 +586,7 @@ with gr.Blocks(title="Virtual Try-On") as demo:
                                 interactive=False
                             )
                             download_btn = gr.File(label="Download Generated Image", value=str(RESULT_MALE_KURTA_1), interactive=False)
-                            status_log = gr.Markdown("✅ **Pair 1 Active:** Asian Male Model (`model_5.png`) + Royal Blue Kurta.")
+                            status_log = gr.HTML(get_preset_1_html())
 
                     # Button Click Handlers
                     btn_p1.click(fn=load_preset_1, inputs=[], outputs=[person_box, garment_box, model_radio, output_preview, status_log, download_btn])
