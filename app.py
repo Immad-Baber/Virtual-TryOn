@@ -1,15 +1,11 @@
 """
-Virtual Try-On Web Platform — Modern Soft Glassmorphic Aesthetic
-================================================================
-Accurate Person-Garment Consistency with Zero Mismatches.
-Features:
-- 4 Verified Academic Benchmark Pairs (100% Exact Matching Person + Garment + Result)
-  * Pair 1: Asian Male Model + Royal Blue Kurta -> Asian Male in Blue Kurta
-  * Pair 2: Female Model + Floral Blouse -> Female Model in Floral Blouse
-  * Pair 3: Asian Male Model + Black Graphic T-Shirt -> Asian Male in Black Graphic T-Shirt
-  * Pair 4: Female Model + Maroon Pakistani Kameez -> Female Model in Maroon Kameez
-- High-contrast, crisp typography and elegant frosted glass aesthetics
-- Live token-authenticated diffusion for custom uploads
+Virtual Try-On Web Platform — Crisp, Professional Light Glassmorphism UI
+========================================================================
+Fixed dark container bleed, invisible text, and high contrast:
+- Consistent light frosted glass palette with pure white surfaces
+- Dark charcoal & violet typography (#0f172a, #4338ca, #1e1b4b)
+- Crisp visible sidebar icons and labels
+- Clean matching status logs, radio buttons, file downloads, and image containers
 """
 
 import os
@@ -30,71 +26,72 @@ ASSETS_DIR = PROJECT_ROOT / "app_assets"
 DATA_DIR = ASSETS_DIR / "data"
 
 # ------------------------------------------------------------------------------
-# 4 Verified Academic Benchmark Pairs (Exact Synchronized Inputs & Outputs)
+# 4 Verified Academic Benchmark Pairs
 # ------------------------------------------------------------------------------
-# Pair 1: Asian Male Model + Royal Blue Pakistani Kurta
 MALE_PERSON_1 = PROJECT_ROOT / "official_catvton_repo" / "resource" / "demo" / "example" / "person" / "men" / "model_5.png"
 MALE_KURTA_1 = PROJECT_ROOT / "sample_images" / "garments" / "pakistani" / "kurta_men_royal_blue.jpg"
 RESULT_MALE_KURTA_1 = PROJECT_ROOT / "sample_images" / "executed_results" / "live_kurta_tryon_result.png"
 
-# Pair 2: Female Model + Floral Patterned Blouse
 FEMALE_PERSON_2 = ASSETS_DIR / "model_comparison" / "benchmark_person.png"
 FEMALE_BLOUSE_2 = ASSETS_DIR / "model_comparison" / "benchmark_garment.jpg"
 RESULT_FEMALE_BLOUSE_CATVTON = ASSETS_DIR / "model_comparison" / "catvton_result.png"
 RESULT_FEMALE_BLOUSE_IDM = ASSETS_DIR / "model_comparison" / "idm_vton_result.png"
 
-# Pair 3: Asian Male Model + Official Black Graphic T-Shirt (Exact Matched Pair from Colab Run)
 MALE_PERSON_3 = PROJECT_ROOT / "official_catvton_repo" / "resource" / "demo" / "example" / "person" / "men" / "model_5.png"
 MALE_BLACK_TSHIRT_3 = PROJECT_ROOT / "official_catvton_repo" / "resource" / "demo" / "example" / "condition" / "upper" / "24083449_54173465_2048.jpg"
 RESULT_MALE_BLACK_TSHIRT_3 = PROJECT_ROOT / "sample_images" / "executed_results" / "men_tryon_result.png"
 
-# Pair 4: Female Model + Maroon Pakistani Kameez
 FEMALE_PERSON_4 = ASSETS_DIR / "ethnic_garments" / "person_female_kameez.jpg"
 FEMALE_KAMEEZ_4 = ASSETS_DIR / "ethnic_garments" / "garment_kameez_maroon.jpg"
 RESULT_FEMALE_KAMEEZ_4 = ASSETS_DIR / "ethnic_garments" / "kameez_tryon_result.png"
 
 # ------------------------------------------------------------------------------
-# Soft Lavender & Frosted Glassmorphism Theme CSS (High Contrast & Sharp Readability)
+# Unified Crisp Light Theme CSS (Completely removes dark container clashes)
 # ------------------------------------------------------------------------------
 GLASS_THEME_CSS = """
 /* Background Canvas: Soft Lilac, Sky Blue and Violet organic blurred gradients */
 body, .gradio-container {
     background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 35%, #f3e8ff 70%, #ede9fe 100%) !important;
     background-attachment: fixed !important;
-    color: #1e1b4b !important;
+    color: #0f172a !important;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", Helvetica, Arial, sans-serif !important;
-    max-width: 1380px !important;
+    max-width: 1400px !important;
     margin: 0 auto !important;
     padding: 12px 18px !important;
 }
 
+/* Force light surface across all Gradio auto-generated inner boxes */
+.gradio-container * {
+    border-color: rgba(199, 210, 254, 0.7) !important;
+}
+
 /* Frosted Glassmorphic Cards */
 .glass-card {
-    background: rgba(255, 255, 255, 0.78) !important;
-    backdrop-filter: blur(24px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.95) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(28px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
     border-radius: 24px !important;
-    box-shadow: 0 16px 36px rgba(124, 58, 237, 0.08), 0 2px 6px rgba(255, 255, 255, 0.6) inset !important;
+    box-shadow: 0 16px 36px rgba(124, 58, 237, 0.08), 0 2px 6px rgba(255, 255, 255, 0.8) inset !important;
     padding: 24px !important;
 }
 
 .glass-nav-card {
-    background: rgba(255, 255, 255, 0.68) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
     backdrop-filter: blur(28px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.95) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
     border-radius: 24px !important;
     box-shadow: 0 12px 30px rgba(99, 102, 241, 0.08) !important;
-    padding: 20px 14px !important;
+    padding: 22px 16px !important;
 }
 
 /* Glass Header Pill */
 .glass-header-pill {
-    background: rgba(255, 255, 255, 0.8) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.95) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
     border-radius: 50px !important;
-    padding: 10px 24px !important;
+    padding: 12px 26px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -104,129 +101,185 @@ body, .gradio-container {
 
 /* Left Sidebar Navigation Pills */
 .nav-item-active {
-    background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%) !important;
+    background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%) !important;
     color: #ffffff !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
     border-radius: 16px !important;
-    padding: 12px 18px !important;
+    padding: 13px 18px !important;
     display: flex !important;
     align-items: center !important;
     gap: 12px !important;
-    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3) !important;
-    margin-bottom: 8px !important;
+    box-shadow: 0 8px 20px rgba(109, 40, 217, 0.35) !important;
+    margin-bottom: 10px !important;
 }
 
 .nav-item-inactive {
-    background: transparent !important;
-    color: #374151 !important;
-    font-weight: 600 !important;
+    background: rgba(243, 244, 246, 0.7) !important;
+    color: #1e293b !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
     border-radius: 16px !important;
     padding: 12px 18px !important;
     display: flex !important;
     align-items: center !important;
     gap: 12px !important;
     transition: all 0.2s ease !important;
-    margin-bottom: 6px !important;
+    margin-bottom: 8px !important;
     cursor: pointer !important;
+    border: 1px solid rgba(226, 232, 240, 0.9) !important;
 }
 
 .nav-item-inactive:hover {
-    background: rgba(255, 255, 255, 0.7) !important;
-    color: #6d28d9 !important;
+    background: #ffffff !important;
+    color: #4f46e5 !important;
     transform: translateX(3px) !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.12) !important;
 }
 
-/* Hero Badge & Typography */
-.hero-badge-icon {
-    width: 48px;
-    height: 48px;
-    background: #ede9fe;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+/* Fix All Default Dark Gradio Containers (Radio, Accordion, Image, File) */
+.gradio-container .block,
+.gradio-container .form,
+.gradio-container fieldset,
+.gradio-container .input-container,
+.gradio-container .output-container,
+.gradio-container .image-container,
+.gradio-container .file-preview-holder,
+.gradio-container .wrap_default,
+.gradio-container .wrap {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-radius: 16px !important;
+    border: 1.5px solid #e0e7ff !important;
+    box-shadow: 0 4px 12px rgba(148, 163, 184, 0.05) !important;
 }
 
-.hero-title {
-    font-size: 2.1rem;
-    font-weight: 800;
-    color: #1e1b4b;
-    margin: 0;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+/* Radio Button Options: Pure White Background with Dark Bold Text */
+.gradio-container label.selected,
+.gradio-container label[data-checked="true"] {
+    background: #ede9fe !important;
+    border-color: #7c3aed !important;
+    color: #4c1d95 !important;
+    font-weight: 800 !important;
 }
 
-.hero-title span {
-    color: #7c3aed;
+.gradio-container label {
+    background: #f8fafc !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
+    border-radius: 12px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    padding: 10px 14px !important;
 }
 
-.hero-subtitle {
-    font-size: 1.0rem;
-    color: #4b5563;
-    margin: 4px 0 0 0;
-    font-weight: 600;
+.gradio-container label span {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+}
+
+/* File Download Box: Clean Light Violet Surface */
+.gradio-container .file-preview-holder,
+.gradio-container .file-preview,
+.gradio-container .file,
+.gradio-container [data-testid="file"] {
+    background: #f8fafc !important;
+    border: 1.5px solid #c7d2fe !important;
+    border-radius: 14px !important;
+    color: #1e1b4b !important;
+}
+
+.gradio-container [data-testid="file"] * {
+    color: #1e1b4b !important;
+    font-weight: 700 !important;
+}
+
+/* Accordion Styling */
+.gradio-container .label-wrap {
+    background: #f8fafc !important;
+    border-radius: 12px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    padding: 10px 14px !important;
+    color: #1e293b !important;
+    font-weight: 700 !important;
+}
+
+/* Markdown and Status Log: High Contrast Crisp Dark Slate */
+.gradio-container .prose,
+.gradio-container .markdown-text,
+.gradio-container .prose * {
+    color: #0f172a !important;
+}
+
+.status-badge {
+    background: #ecfdf5 !important;
+    border: 1.5px solid #6ee7b7 !important;
+    border-radius: 14px !important;
+    padding: 12px 16px !important;
+    color: #065f46 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08) !important;
 }
 
 /* Stepper Cards in "How it works" */
 .step-item {
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.95);
-    border-radius: 18px;
-    padding: 14px 16px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 12px;
-    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.05);
+    background: #ffffff !important;
+    border: 1.5px solid #ede9fe !important;
+    border-radius: 18px !important;
+    padding: 14px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    margin-bottom: 12px !important;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.06) !important;
 }
 
 .step-num {
-    background: #ede9fe;
-    color: #7c3aed;
-    font-weight: 800;
-    font-size: 0.95rem;
-    width: 38px;
-    height: 38px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    background: #ede9fe !important;
+    color: #6d28d9 !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
 }
 
 /* Preset Action Pills */
 .sample-pill-btn {
     background: #ffffff !important;
     border: 1.5px solid #c4b5fd !important;
-    color: #4c1d95 !important;
-    font-weight: 700 !important;
+    color: #4338ca !important;
+    font-weight: 800 !important;
     border-radius: 14px !important;
-    padding: 10px 14px !important;
-    font-size: 0.88rem !important;
+    padding: 10px 16px !important;
+    font-size: 0.9rem !important;
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08) !important;
     transition: all 0.2s ease !important;
 }
 
 .sample-pill-btn:hover {
-    background: #f5f3ff !important;
-    border-color: #7c3aed !important;
-    color: #6d28d9 !important;
+    background: #ede9fe !important;
+    border-color: #6d28d9 !important;
+    color: #4c1d95 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 18px rgba(124, 58, 237, 0.2) !important;
+    box-shadow: 0 8px 18px rgba(109, 40, 217, 0.2) !important;
 }
 
 /* Gradient Primary Action Button */
 button.primary-gradient-btn {
-    background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%) !important;
+    background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%) !important;
     color: #ffffff !important;
     font-size: 1.05rem !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     border-radius: 16px !important;
-    padding: 14px 28px !important;
+    padding: 15px 28px !important;
     border: none !important;
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35) !important;
+    box-shadow: 0 8px 24px rgba(109, 40, 217, 0.35) !important;
     transition: all 0.2s ease !important;
     width: 100% !important;
     margin-top: 14px !important;
@@ -234,38 +287,28 @@ button.primary-gradient-btn {
 }
 
 button.primary-gradient-btn:hover {
-    background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%) !important;
+    background: linear-gradient(135deg, #5b21b6 0%, #4338ca 100%) !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 12px 28px rgba(124, 58, 237, 0.45) !important;
+    box-shadow: 0 12px 28px rgba(109, 40, 217, 0.45) !important;
 }
 
-/* High Contrast Section Headers and Labels */
-h2, h3, .section-heading {
-    color: #1e1b4b !important;
-    font-weight: 800 !important;
-}
-
-.gradio-container label span {
-    color: #1e1b4b !important;
-    font-weight: 700 !important;
-    font-size: 0.92rem !important;
-}
-
-/* Tab headers styling with clear contrast */
+/* Tab headers styling with high contrast */
 .gradio-container .tab-nav button {
-    border-radius: 12px !important;
-    font-weight: 700 !important;
-    color: #374151 !important;
-    padding: 10px 20px !important;
-    border: none !important;
-    font-size: 0.95rem !important;
+    border-radius: 14px !important;
+    font-weight: 800 !important;
+    color: #1e293b !important;
+    padding: 11px 22px !important;
+    border: 1.5px solid transparent !important;
+    font-size: 0.98rem !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+    margin-right: 8px !important;
 }
 
 .gradio-container .tab-nav button.selected {
     background: #ffffff !important;
     color: #6d28d9 !important;
-    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.15) !important;
-    border: 1px solid rgba(224, 231, 255, 0.9) !important;
+    border: 1.5px solid #c7d2fe !important;
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.14) !important;
 }
 """
 
@@ -293,13 +336,12 @@ def load_preset_2():
     return str(FEMALE_PERSON_2), str(FEMALE_BLOUSE_2), "CatVTON (Fast & Lightweight)", str(RESULT_FEMALE_BLOUSE_CATVTON), msg, str(RESULT_FEMALE_BLOUSE_CATVTON)
 
 def load_preset_3():
-    """Pair 3: Asian Male Model + Black Graphic T-Shirt (Exact Match from Colab Step 5)"""
+    """Pair 3: Asian Male Model + Black Graphic T-Shirt"""
     msg = (
         "✅ **Benchmark Pair 3 Loaded:**\n\n"
         "• **Input Person:** Asian Male Model (`model_5.png`)\n"
         "• **Input Garment:** Black Graphic T-Shirt (`24083449_54173465_2048.jpg`)\n"
         "• **Model:** CatVTON (50 DDIM Steps, CFG 2.5)\n"
-        "• **Result:** Matches the official Colab Step 5 execution.\n"
         "• **Status:** 100% Matched output loaded."
     )
     return str(MALE_PERSON_3), str(MALE_BLACK_TSHIRT_3), "CatVTON (Fast & Lightweight)", str(RESULT_MALE_BLACK_TSHIRT_3), msg, str(RESULT_MALE_BLACK_TSHIRT_3)
@@ -381,7 +423,7 @@ def run_virtual_tryon(person_img, garment_img, model_choice, hf_token_str):
 
 
 # ==============================================================================
-# UI DEFINITION (SOFT FROSTED GLASS & CRISP TYPOGRAPHY)
+# UI DEFINITION (LIGHT FROSTED GLASS & HIGH VISIBILITY)
 # ==============================================================================
 with gr.Blocks(title="Virtual Try-On") as demo:
 
@@ -389,13 +431,13 @@ with gr.Blocks(title="Virtual Try-On") as demo:
     gr.HTML(
         """
         <div class="glass-header-pill">
-            <div style="display: flex; align-items: center; gap: 12px; color: #4b5563; flex-grow: 1;">
-                <span style="font-size: 1.15rem;">🔍</span>
-                <span style="font-size: 0.95rem; font-weight: 600; color: #4b5563;">Search clothing, styles, or features...</span>
+            <div style="display: flex; align-items: center; gap: 14px; flex-grow: 1;">
+                <span style="font-size: 1.25rem; color: #4f46e5;">🔍</span>
+                <span style="font-size: 0.98rem; font-weight: 700; color: #1e293b;">Search clothing, styles, or features...</span>
             </div>
-            <div style="display: flex; align-items: center; gap: 18px; color: #374151;">
-                <span style="font-size: 1.25rem; cursor: pointer; position: relative;">🔔<span style="position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: #8b5cf6; border-radius: 50%;"></span></span>
-                <div style="width: 38px; height: 38px; border-radius: 50%; background: #ede9fe; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #7c3aed; font-size: 0.95rem; border: 2px solid #ffffff; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <span style="font-size: 1.3rem; cursor: pointer; position: relative;">🔔<span style="position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: #8b5cf6; border-radius: 50%;"></span></span>
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #ede9fe; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #6d28d9; font-size: 0.95rem; border: 2px solid #c7d2fe; box-shadow: 0 4px 10px rgba(109, 40, 217, 0.15);">
                     IB
                 </div>
             </div>
@@ -407,35 +449,35 @@ with gr.Blocks(title="Virtual Try-On") as demo:
         # ----------------------------------------------------------------------
         # LEFT COLUMN: Floating Sidebar Navigation
         # ----------------------------------------------------------------------
-        with gr.Column(scale=1, min_width=210, elem_classes=["glass-nav-card"]):
+        with gr.Column(scale=1, min_width=220, elem_classes=["glass-nav-card"]):
             gr.HTML(
                 """
-                <div style="display: flex; align-items: center; gap: 12px; padding: 6px 10px 22px 10px; border-bottom: 1px solid rgba(224, 231, 255, 0.8); margin-bottom: 16px;">
-                    <div style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25);">
+                <div style="display: flex; align-items: center; gap: 12px; padding: 6px 8px 22px 8px; border-bottom: 2px solid #e0e7ff; margin-bottom: 18px;">
+                    <div style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: 0 6px 16px rgba(109, 40, 217, 0.3);">
                         👔
                     </div>
                     <div>
-                        <div style="font-weight: 900; font-size: 1.1rem; line-height: 1.1; color: #1e1b4b; letter-spacing: -0.01em;">VIRTUAL</div>
-                        <div style="font-weight: 900; font-size: 1.1rem; line-height: 1.1; color: #7c3aed; letter-spacing: -0.01em;">TRY-ON</div>
+                        <div style="font-weight: 900; font-size: 1.15rem; line-height: 1.1; color: #0f172a; letter-spacing: -0.01em;">VIRTUAL</div>
+                        <div style="font-weight: 900; font-size: 1.15rem; line-height: 1.1; color: #6d28d9; letter-spacing: -0.01em;">TRY-ON</div>
                     </div>
                 </div>
 
                 <div class="nav-item-inactive">
-                    <span>📊</span> <span>Dashboard</span>
+                    <span style="font-size: 1.15rem;">📊</span> <span>Dashboard</span>
                 </div>
                 <div class="nav-item-active">
-                    <span>👔</span> <span>Try-On</span>
+                    <span style="font-size: 1.15rem;">👔</span> <span>Try-On</span>
                 </div>
                 <div class="nav-item-inactive">
-                    <span>📚</span> <span>My Wardrobe</span>
+                    <span style="font-size: 1.15rem;">📚</span> <span>My Wardrobe</span>
                 </div>
                 <div class="nav-item-inactive">
-                    <span>⚙️</span> <span>Settings</span>
+                    <span style="font-size: 1.15rem;">⚙️</span> <span>Settings</span>
                 </div>
 
-                <div style="margin-top: 32px; padding: 14px; background: rgba(237, 233, 254, 0.85); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.95);">
-                    <div style="font-size: 0.82rem; font-weight: 800; color: #6d28d9; margin-bottom: 4px;">MODEL ENGINE</div>
-                    <div style="font-size: 0.8rem; font-weight: 600; color: #374151;">CatVTON (48.7M) & IDM-VTON Dual UNet</div>
+                <div style="margin-top: 32px; padding: 14px; background: #ffffff; border-radius: 16px; border: 1.5px solid #c7d2fe; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08);">
+                    <div style="font-size: 0.84rem; font-weight: 900; color: #4f46e5; margin-bottom: 4px;">MODEL ENGINE</div>
+                    <div style="font-size: 0.82rem; font-weight: 700; color: #1e293b;">CatVTON (48.7M) & IDM-VTON Dual UNet</div>
                 </div>
                 """
             )
@@ -447,12 +489,12 @@ with gr.Blocks(title="Virtual Try-On") as demo:
             gr.HTML(
                 """
                 <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 18px; padding-left: 4px;">
-                    <div class="hero-badge-icon">
+                    <div style="width: 48px; height: 48px; background: #ede9fe; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);">
                         👔
                     </div>
                     <div>
-                        <h1 class="hero-title">Virtual <span>Try-On</span></h1>
-                        <p class="hero-subtitle">See it. Love it. Wear it.</p>
+                        <h1 style="font-size: 2.2rem; font-weight: 900; color: #0f172a; margin: 0; line-height: 1.1; letter-spacing: -0.02em;">Virtual <span style="color: #6d28d9;">Try-On</span></h1>
+                        <p style="font-size: 1.05rem; color: #475569; margin: 4px 0 0 0; font-weight: 700;">See it. Love it. Wear it.</p>
                     </div>
                 </div>
                 """
@@ -466,7 +508,7 @@ with gr.Blocks(title="Virtual Try-On") as demo:
                         with gr.Column(scale=3, elem_classes=["glass-card"]):
                             gr.HTML(
                                 """
-                                <h3 style="font-size: 1.15rem; font-weight: 800; color: #1e1b4b; margin: 0 0 12px 0;">
+                                <h3 style="font-size: 1.2rem; font-weight: 900; color: #0f172a; margin: 0 0 14px 0;">
                                     Select a Verified Benchmark or Upload Custom
                                 </h3>
                                 """
@@ -493,12 +535,11 @@ with gr.Blocks(title="Virtual Try-On") as demo:
                                     height=250
                                 )
 
-                            with gr.Row():
-                                model_radio = gr.Radio(
-                                    label="Generative Architecture",
-                                    choices=["CatVTON (Fast & Lightweight)", "IDM-VTON (Benchmark)"],
-                                    value="CatVTON (Fast & Lightweight)"
-                                )
+                            model_radio = gr.Radio(
+                                label="Generative Architecture",
+                                choices=["CatVTON (Fast & Lightweight)", "IDM-VTON (Benchmark)"],
+                                value="CatVTON (Fast & Lightweight)"
+                            )
 
                             with gr.Accordion("🔑 Hugging Face Token (Optional: Unlocks unlimited custom uploads)", open=False):
                                 hf_token_box = gr.Textbox(
@@ -514,43 +555,40 @@ with gr.Blocks(title="Virtual Try-On") as demo:
                             gr.HTML(
                                 """
                                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
-                                    <span style="font-size: 1.3rem; color: #7c3aed;">✨</span>
-                                    <h3 style="margin: 0; font-size: 1.2rem; font-weight: 800; color: #1e1b4b;">How it works</h3>
+                                    <span style="font-size: 1.3rem; color: #6d28d9;">✨</span>
+                                    <h3 style="margin: 0; font-size: 1.25rem; font-weight: 900; color: #0f172a;">How it works</h3>
                                 </div>
 
                                 <div class="step-item">
                                     <div class="step-num">01</div>
                                     <div>
-                                        <div style="font-weight: 800; font-size: 0.95rem; color: #1e1b4b;">Upload Your Photo</div>
-                                        <div style="font-size: 0.82rem; font-weight: 500; color: #4b5563;">Use a clear, front-facing image.</div>
+                                        <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a;">Upload Your Photo</div>
+                                        <div style="font-size: 0.84rem; font-weight: 600; color: #475569;">Use a clear, front-facing image.</div>
                                     </div>
                                 </div>
 
                                 <div class="step-item">
                                     <div class="step-num">02</div>
                                     <div>
-                                        <div style="font-weight: 800; font-size: 0.95rem; color: #1e1b4b;">Choose a Garment</div>
-                                        <div style="font-size: 0.82rem; font-weight: 500; color: #4b5563;">Select or upload the clothing you want to try.</div>
+                                        <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a;">Choose a Garment</div>
+                                        <div style="font-size: 0.84rem; font-weight: 600; color: #475569;">Select or upload the clothing you want to try.</div>
                                     </div>
                                 </div>
 
                                 <div class="step-item">
                                     <div class="step-num">03</div>
                                     <div>
-                                        <div style="font-weight: 800; font-size: 0.95rem; color: #1e1b4b;">Generate Try-On</div>
-                                        <div style="font-size: 0.82rem; font-weight: 500; color: #4b5563;">Our AI creates a realistic preview in seconds.</div>
+                                        <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a;">Generate Try-On</div>
+                                        <div style="font-size: 0.84rem; font-weight: 600; color: #475569;">Our AI creates a realistic preview in seconds.</div>
                                     </div>
                                 </div>
-                                """
-                            )
 
-                            gr.HTML(
-                                """
-                                <h3 style="font-size: 1.15rem; font-weight: 800; color: #1e1b4b; margin: 16px 0 8px 0;">
+                                <h3 style="font-size: 1.2rem; font-weight: 900; color: #0f172a; margin: 18px 0 8px 0;">
                                     Generated Result Preview
                                 </h3>
                                 """
                             )
+
                             output_preview = gr.Image(
                                 label="Try-On Output",
                                 value=str(RESULT_MALE_KURTA_1),
@@ -575,7 +613,7 @@ with gr.Blocks(title="Virtual Try-On") as demo:
                 # TAB 2: MODEL COMPARISON
                 with gr.Tab("⚖️ Model Comparison (CatVTON vs IDM-VTON)"):
                     with gr.Column(elem_classes=["glass-card"]):
-                        gr.HTML("<h3 style='font-weight: 800; color: #1e1b4b;'>Empirical Comparison on Identical Benchmark Pair</h3>")
+                        gr.HTML("<h3 style='font-weight: 900; color: #0f172a; font-size: 1.25rem;'>Empirical Comparison on Identical Benchmark Pair</h3>")
                         with gr.Row():
                             with gr.Column():
                                 gr.Image(value=str(FEMALE_PERSON_2), label="Person (Input)")
@@ -592,7 +630,7 @@ with gr.Blocks(title="Virtual Try-On") as demo:
                 # TAB 3: RESEARCH DATA & CHARTS
                 with gr.Tab("📊 Research Sweeps & Metrics"):
                     with gr.Column(elem_classes=["glass-card"]):
-                        gr.HTML("<h3 style='font-weight: 800; color: #1e1b4b;'>Hyperparameter Sweeps & Analysis</h3>")
+                        gr.HTML("<h3 style='font-weight: 900; color: #0f172a; font-size: 1.25rem;'>Hyperparameter Sweeps & Analysis</h3>")
                         with gr.Row():
                             with gr.Column():
                                 gr.Image(value=str(ASSETS_DIR / "cfg_sweep" / "cfg_sweep_banner.png"), label="CFG Sweep [1.5 | 2.5 | 3.5 | 5.0]")
@@ -606,7 +644,7 @@ with gr.Blocks(title="Virtual Try-On") as demo:
     # Footer
     gr.HTML(
         """
-        <div style="text-align: center; color: #4b5563; font-weight: 600; font-size: 0.88rem; padding: 20px 0 10px 0; margin-top: 18px;">
+        <div style="text-align: center; color: #475569; font-weight: 700; font-size: 0.92rem; padding: 22px 0 10px 0; margin-top: 18px;">
             ✨ <b>Virtual Try-On Research Lab</b> • Generative AI University Project • CatVTON & IDM-VTON
         </div>
         """
@@ -614,5 +652,5 @@ with gr.Blocks(title="Virtual Try-On") as demo:
 
 
 if __name__ == "__main__":
-    print("Launching Soft Glassmorphic Virtual Try-On UI on http://127.0.0.1:7860 ...")
+    print("Launching Pure Light Frosted Glass Virtual Try-On UI on http://127.0.0.1:7860 ...")
     demo.launch(server_name="127.0.0.1", server_port=7860, share=False, css=GLASS_THEME_CSS)
