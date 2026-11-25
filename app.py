@@ -1,10 +1,10 @@
 """
 Virtual Try-On Web Platform — High-Contrast Clean Modern UI
 ============================================================
-Guaranteed maximum readability across every screen & projector:
-- Pure solid white cards (#ffffff) with high-contrast dark navy typography (#0f172a)
-- Zero low-contrast faint grey or washed-out text
-- Clear visible pill buttons, status indicators, tabs, and form controls
+Guaranteed 100% visibility of all tabs, text, buttons, and components.
+- JS-injected light mode enforce (removes all OS dark mode interference)
+- Solid white containers for all radios, accordions, inputs, file boxes
+- High-contrast navy and bold slate typography
 - 4 verified benchmark pairs + live token try-on
 """
 
@@ -46,13 +46,13 @@ FEMALE_KAMEEZ_4 = ASSETS_DIR / "ethnic_garments" / "garment_kameez_maroon.jpg"
 RESULT_FEMALE_KAMEEZ_4 = ASSETS_DIR / "ethnic_garments" / "kameez_tryon_result.png"
 
 # ------------------------------------------------------------------------------
-# High-Contrast CSS (Guarantees 100% Text & UI Visibility Everywhere)
+# High-Contrast CSS: Completely overwrites all dark elements with pure white/navy
 # ------------------------------------------------------------------------------
 HIGH_CONTRAST_CSS = """
-/* Background Canvas: Soft subtle blue-grey gradient */
-body, .gradio-container {
+/* Background Canvas */
+html, body, .gradio-container, .gradio-container-6-32-0 {
     background: linear-gradient(135deg, #eef2ff 0%, #f1f5f9 50%, #ede9fe 100%) !important;
-    background-attachment: fixed !important;
+    background-color: #f1f5f9 !important;
     color: #0f172a !important;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", Helvetica, Arial, sans-serif !important;
     max-width: 1420px !important;
@@ -60,15 +60,15 @@ body, .gradio-container {
     padding: 14px 20px !important;
 }
 
-/* Force dark readable text everywhere */
-p, span, div, label, li, a, h1, h2, h3, h4, th, td {
-    color: #0f172a !important;
+/* Force light mode on all child elements */
+.dark {
+    color-scheme: light !important;
 }
 
-/* Cards: Solid bright white surfaces with subtle border and crisp elevation */
+/* Base Cards */
 .glass-card {
     background: #ffffff !important;
-    border: 1.5px solid #cbd5e1 !important;
+    border: 2px solid #cbd5e1 !important;
     border-radius: 20px !important;
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06) !important;
     padding: 24px !important;
@@ -76,7 +76,7 @@ p, span, div, label, li, a, h1, h2, h3, h4, th, td {
 
 .glass-nav-card {
     background: #ffffff !important;
-    border: 1.5px solid #cbd5e1 !important;
+    border: 2px solid #cbd5e1 !important;
     border-radius: 20px !important;
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05) !important;
     padding: 22px 16px !important;
@@ -85,7 +85,7 @@ p, span, div, label, li, a, h1, h2, h3, h4, th, td {
 /* Header Pill Bar */
 .glass-header-pill {
     background: #ffffff !important;
-    border: 1.5px solid #cbd5e1 !important;
+    border: 2px solid #cbd5e1 !important;
     border-radius: 50px !important;
     padding: 12px 28px !important;
     display: flex !important;
@@ -95,7 +95,7 @@ p, span, div, label, li, a, h1, h2, h3, h4, th, td {
     margin-bottom: 22px !important;
 }
 
-/* Left Sidebar Navigation Pills: Bold & High Visibility */
+/* Navigation Pills */
 .nav-item-active {
     background: #6d28d9 !important;
     color: #ffffff !important;
@@ -110,7 +110,7 @@ p, span, div, label, li, a, h1, h2, h3, h4, th, td {
     margin-bottom: 10px !important;
 }
 
-.nav-item-active span {
+.nav-item-active * {
     color: #ffffff !important;
 }
 
@@ -126,7 +126,6 @@ p, span, div, label, li, a, h1, h2, h3, h4, th, td {
     gap: 12px !important;
     margin-bottom: 8px !important;
     border: 1.5px solid #e2e8f0 !important;
-    transition: all 0.15s ease !important;
     cursor: pointer !important;
 }
 
@@ -136,77 +135,78 @@ p, span, div, label, li, a, h1, h2, h3, h4, th, td {
     color: #6d28d9 !important;
 }
 
-.nav-item-inactive span {
-    color: #1e293b !important;
-}
-
-/* Tabs: Bold & Distinct */
+/* ==========================================================================
+   TABS FIX: Make EVERY tab button 100% visible and solid
+   ========================================================================== */
 .gradio-container .tab-nav,
-.gradio-container .tabs > .tab-nav {
+.gradio-container .tabs > .tab-nav,
+div[role="tablist"] {
     background: #ffffff !important;
     border-radius: 16px !important;
-    padding: 6px !important;
-    border: 1.5px solid #cbd5e1 !important;
+    padding: 8px !important;
+    border: 2px solid #cbd5e1 !important;
     display: flex !important;
-    gap: 10px !important;
-    margin-bottom: 18px !important;
+    gap: 12px !important;
+    margin-bottom: 20px !important;
     box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
 }
 
-.gradio-container .tab-nav button {
+.gradio-container .tab-nav button,
+div[role="tablist"] button,
+button[role="tab"] {
     background: #f1f5f9 !important;
-    color: #334155 !important;
+    color: #1e293b !important;
     font-weight: 800 !important;
-    font-size: 1.0rem !important;
+    font-size: 1.02rem !important;
     border-radius: 12px !important;
     padding: 12px 24px !important;
-    border: 1px solid #e2e8f0 !important;
+    border: 1.5px solid #cbd5e1 !important;
     transition: all 0.15s ease !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-flex !important;
+    align-items: center !important;
 }
 
-.gradio-container .tab-nav button:hover {
+.gradio-container .tab-nav button:hover,
+button[role="tab"]:hover {
     background: #e2e8f0 !important;
+    color: #0f172a !important;
+    border-color: #94a3b8 !important;
+}
+
+.gradio-container .tab-nav button.selected,
+button[role="tab"][aria-selected="true"],
+button[role="tab"].selected {
+    background: #6d28d9 !important;
+    color: #ffffff !important;
+    border: 1.5px solid #6d28d9 !important;
+    box-shadow: 0 4px 14px rgba(109, 40, 217, 0.3) !important;
+}
+
+.gradio-container .tab-nav button.selected *,
+button[role="tab"][aria-selected="true"] * {
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   RADIO BUTTONS & ACCORDIONS FIX: Remove dark charcoal box (#1f2937)
+   ========================================================================== */
+.gradio-container fieldset,
+.gradio-container .form,
+.gradio-container .block,
+.gradio-container .accordion,
+.gradio-container [data-testid="radio"],
+.gradio-container [data-testid="accordion"] {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    border: 2px solid #cbd5e1 !important;
+    border-radius: 16px !important;
     color: #0f172a !important;
 }
 
-.gradio-container .tab-nav button.selected {
-    background: #6d28d9 !important;
-    color: #ffffff !important;
-    border: 1px solid #6d28d9 !important;
-    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.25) !important;
-}
-
-.gradio-container .tab-nav button.selected span,
-.gradio-container .tab-nav button.selected * {
-    color: #ffffff !important;
-}
-
-/* Preset Buttons: High Contrast Indigo Border Pills */
-.sample-pill-btn {
-    background: #ffffff !important;
-    border: 2px solid #6d28d9 !important;
-    color: #4c1d95 !important;
-    font-weight: 800 !important;
-    font-size: 0.95rem !important;
-    border-radius: 12px !important;
-    padding: 10px 16px !important;
-    box-shadow: 0 2px 8px rgba(109, 40, 217, 0.1) !important;
-    transition: all 0.15s ease !important;
-}
-
-.sample-pill-btn:hover {
-    background: #6d28d9 !important;
-    color: #ffffff !important;
-    transform: translateY(-1px) !important;
-}
-
-.sample-pill-btn:hover * {
-    color: #ffffff !important;
-}
-
-/* Radio Buttons: Clean Solid White with Bold Navy Text */
 .gradio-container label {
-    background: #ffffff !important;
+    background: #f8fafc !important;
     border: 2px solid #cbd5e1 !important;
     color: #0f172a !important;
     font-weight: 800 !important;
@@ -227,7 +227,25 @@ p, span, div, label, li, a, h1, h2, h3, h4, th, td {
     font-weight: 800 !important;
 }
 
-/* Text Inputs: Crisp White with Dark Text */
+/* Accordion Header */
+.gradio-container .label-wrap,
+.gradio-container summary {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    border-radius: 12px !important;
+    padding: 10px 14px !important;
+}
+
+.gradio-container .label-wrap * {
+    color: #0f172a !important;
+    font-weight: 800 !important;
+}
+
+/* ==========================================================================
+   INPUTS & TEXTBOXES FIX: Pure white with dark text
+   ========================================================================== */
 input, textarea, select, .gradio-container input, .gradio-container textarea {
     background-color: #ffffff !important;
     background: #ffffff !important;
@@ -239,35 +257,56 @@ input, textarea, select, .gradio-container input, .gradio-container textarea {
     padding: 10px 14px !important;
 }
 
+input::placeholder, textarea::placeholder {
+    color: #64748b !important;
+}
+
 input:focus, textarea:focus {
     border-color: #6d28d9 !important;
     box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.15) !important;
 }
 
-/* Stepper Box in 'How it works' */
-.step-item {
-    background: #f8fafc !important;
-    border: 1.5px solid #e2e8f0 !important;
+/* ==========================================================================
+   FILE DOWNLOAD BOX FIX: Remove the pitch-black container
+   ========================================================================== */
+.gradio-container .file-preview-holder,
+.gradio-container .file-preview,
+.gradio-container .file,
+.gradio-container [data-testid="file"],
+.gradio-container [data-testid="file"] > div {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    border: 2px solid #cbd5e1 !important;
     border-radius: 14px !important;
-    padding: 14px 16px !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 14px !important;
-    margin-bottom: 12px !important;
+    color: #0f172a !important;
 }
 
-.step-num {
+.gradio-container [data-testid="file"] * {
+    color: #0f172a !important;
+    font-weight: 800 !important;
+}
+
+/* Preset Action Pills */
+.sample-pill-btn {
+    background: #ffffff !important;
+    border: 2px solid #6d28d9 !important;
+    color: #4c1d95 !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 2px 8px rgba(109, 40, 217, 0.1) !important;
+    transition: all 0.15s ease !important;
+}
+
+.sample-pill-btn:hover {
     background: #6d28d9 !important;
     color: #ffffff !important;
-    font-weight: 900 !important;
-    font-size: 1.0rem !important;
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 10px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-shrink: 0 !important;
+    transform: translateY(-1px) !important;
+}
+
+.sample-pill-btn:hover * {
+    color: #ffffff !important;
 }
 
 /* Primary Action Button */
@@ -291,12 +330,11 @@ button.primary-gradient-btn:hover {
     box-shadow: 0 8px 24px rgba(109, 40, 217, 0.4) !important;
 }
 
-button.primary-gradient-btn span,
 button.primary-gradient-btn * {
     color: #ffffff !important;
 }
 
-/* Verified Status Box: Crisp Light Green with Bold Forest Green Text */
+/* Status Box */
 .status-badge {
     background: #f0fdf4 !important;
     border: 2px solid #22c55e !important;
@@ -317,18 +355,39 @@ button.primary-gradient-btn * {
     font-weight: 800 !important;
 }
 
-/* File Download Box */
-.gradio-container .file-preview-holder,
-.gradio-container [data-testid="file"] {
-    background: #ffffff !important;
-    border: 2px solid #cbd5e1 !important;
-    border-radius: 12px !important;
-    color: #0f172a !important;
+/* Stepper Box in 'How it works' */
+.step-item {
+    background: #f8fafc !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 14px !important;
+    padding: 14px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    margin-bottom: 12px !important;
 }
 
-.gradio-container [data-testid="file"] * {
-    color: #0f172a !important;
-    font-weight: 800 !important;
+.step-num {
+    background: #6d28d9 !important;
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    font-size: 1.0rem !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+"""
+
+# Force light mode via JavaScript in head
+JS_LIGHT_ENFORCER = """
+function() {
+    document.documentElement.classList.remove('dark');
+    document.body.classList.remove('dark');
+    localStorage.setItem('color-theme', 'light');
 }
 """
 
@@ -423,9 +482,9 @@ def run_virtual_tryon(person_img, garment_img, model_choice, hf_token_str):
 
 
 # ==============================================================================
-# UI DEFINITION (HIGH CONTRAST & PURE VISIBILITY)
+# UI DEFINITION
 # ==============================================================================
-with gr.Blocks(title="Virtual Try-On") as demo:
+with gr.Blocks(title="Virtual Try-On", js=JS_LIGHT_ENFORCER) as demo:
 
     # Top Search & Profile Bar
     gr.HTML(
@@ -652,5 +711,5 @@ with gr.Blocks(title="Virtual Try-On") as demo:
 
 
 if __name__ == "__main__":
-    print("Launching High-Contrast Virtual Try-On UI on http://127.0.0.1:7860 ...")
+    print("Launching Clean High-Contrast Virtual Try-On UI on http://127.0.0.1:7860 ...")
     demo.launch(server_name="127.0.0.1", server_port=7860, share=False, css=HIGH_CONTRAST_CSS)
